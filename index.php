@@ -1,5 +1,6 @@
 <?php
-$token = getenv("8897219426:AAHN6MY9nu9tiesHxkZ9p0cgpqxV9QbBqqw");
+
+$token = getenv("BOT_TOKEN");
 
 $update = json_decode(file_get_contents("php://input"), true);
 
@@ -8,7 +9,7 @@ if (isset($update["message"])) {
     $chat_id = $update["message"]["chat"]["id"];
     $text = $update["message"]["text"] ?? "";
 
-    if ($text == "/start") {
+    if ($text === "/start") {
 
         $url = "https://api.telegram.org/bot" . $token . "/sendMessage";
 
