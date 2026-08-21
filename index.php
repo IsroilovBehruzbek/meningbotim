@@ -2,13 +2,22 @@
 
 $token = getenv("BOT_TOKEN");
 
-if (!$token) {
-    die("BOT_TOKEN TOPILMADI");
+$update = json_decode(file_get_contents("php://input"), true);
+
+if (isset($update["message"])) {
+
+    $chat_id = $update["message"]["chat"]["id"];
+    $text = $update["message"]["text"] ?? "";
+
+    if ($text === "/start") {
+
+        $url = "https://api.telegram.org/bot" . $token . "/sendMessage";
+
+        $data = [
+            "chat_id" => $chat_id,
+            "text" => "Salom! 👋 Bot ishlayapti!"
+        ];
+
+        file_get_contents($url . "?" . http_build_query($data));
+    }
 }
-
-$url = "https://api.telegram.org/bot" . $token . "/getMe";
-
-$result = file_get_contents($url);
-
-header("Content-Type: application/json");
-echo $result;
