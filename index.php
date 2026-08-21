@@ -1,5 +1,4 @@
 <?php
-echo "salom";
 $token = getenv("8897219426:AAHN6MY9nu9tiesHxkZ9p0cgpqxV9QbBqqw");
 
 $update = json_decode(file_get_contents("php://input"), true);
